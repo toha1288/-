@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة وادي بناء للنقل البري VIP | حجز تذاكر</title>
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0b0d12;
+            --bg-card: #141822;
+            --bg-card-hover: #1c2230;
+            --gold-primary: #d4af37;
+            --gold-light: #f3cf65;
+            --gold-dark: #997b15;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #242b3b;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* Header & Navbar */
+        .header {
+            background: linear-gradient(180deg, #181d2a 0%, #0b0d12 100%);
+            border-bottom: 2px solid var(--gold-primary);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 25px rgba(212, 175, 55, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .brand-logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-primary);
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .brand-titles h1 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--gold-primary);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .brand-titles p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .vip-badge {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-dark) 100%);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Layout Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 992px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Section */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Route Selector Switcher */
+        .route-switch {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            margin-bottom: 22px;
+        }
+
+        .route-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 10px 14px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 800;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .route-btn.active {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+            color: #0b0d12;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+        }
+
+        /* Form Controls */
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: #fff;
+            outline: none;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .manual-amount-input {
+            border-color: var(--gold-primary) !important;
+            color: var(--gold-light) !important;
+            font-weight: 800 !important;
+            background: rgba(212, 175, 55, 0.05) !important;
+        }
+
+        /* Price Calculation Summary Box */
+        .price-box {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0.2) 100%);
+            border: 1px solid var(--gold-primary);
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .price-row strong {
+            color: #fff;
+        }
+
+        .price-total-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 14px;
+            margin-top: 12px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--gold-light);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 24px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+            width: 100%;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+            color: #0b0d12;
+            box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: var(--border-color);
+        }
+
+        /* Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .custom-table th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--gold-primary);
+            padding: 14px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .custom-table td {
+            padding: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Printable Ticket Layout */
+        .printable-ticket {
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 16px;
+            padding: 25px;
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+            border-top: 8px solid var(--gold-primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        /* Paid Stamp Style */
+        .paid-stamp {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-18deg);
+            border: 4px double #10b981;
+            color: #10b981;
+            font-size: 2.2rem;
+            font-weight: 900;
+            padding: 8px 25px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.85;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+            text-shadow: 0 0 2px rgba(16, 185, 129, 0.2);
+            text-align: center;
+            display: none; /* hidden by default */
+        }
+
+        .paid-stamp span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: -4px;
+        }
+
+        .ticket-header-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px dashed #cbd5e1;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ticket-logo-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d4af37;
+        }
+
+        .ticket-brand-text h2 {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #0f172a;
+        }
+
+        .ticket-brand-text p {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .ticket-route-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .route-point h4 {
+            font-size: 1.2rem;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .route-point p {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .ticket-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-field {
+            background: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .ticket-field span {
+            display: block;
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .ticket-field strong {
+            font-size: 0.95rem;
+            color: #0f172a;
+        }
+
+        .ticket-footer-qr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 2px dashed #cbd5e1;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printableTicket, #printableTicket * {
+                visibility: visible;
+            }
+            #printableTicket {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR HEADER -->
+    <header class="header">
+        <a href="#" class="brand-container">
+            <img src="WhatsApp Image 2026-09-30 at 11.31.56 PM.jpeg" alt="شعار وادي بناء" class="brand-logo-img">
+            <div class="brand-titles">
+                <h1>شركة وادي بناء للنقل البري</h1>
+                <p>راحة تليق بك ... طريق يوصلك بأمان</p>
+            </div>
+        </a>
+        <div style="text-align: left;">
+            <span class="vip-badge"><i class="fa-solid fa-star"></i> VIP 5 Stars</span>
+            <div style="font-size: 0.8rem; color: var(--gold-light); margin-top: 5px; font-weight: 700;">
+                <i class="fa-solid fa-headset"></i> الدعم والمساندة: 920000000
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- MAIN BOOKING GRID -->
+        <div class="grid-layout">
+            
+            <!-- LEFT COLUMN: FORM -->
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fa-solid fa-bus-simple"></i> حجز رحلة جديدة
+                        </div>
+                    </div>
+
+                    <!-- ROUTE SWITCHER -->
+                    <div class="route-switch">
+                        <button class="route-btn active" id="btnAJM-ADE" onclick="selectRoute('AJM-ADE', 'عجمان', 'عدن')">
+                            <i class="fa-solid fa-location-dot"></i> عجمان إلى عدن
+                        </button>
+                        <button class="route-btn" id="btnAJM-AMN" onclick="selectRoute('AJM-AMN', 'عجمان', 'عمان')">
+                            <i class="fa-solid fa-location-dot"></i> عجمان إلى عمان
+                        </button>
+                        <button class="route-btn" id="btnAMN-ADE" onclick="selectRoute('AMN-ADE', 'عمان', 'عدن')">
+                            <i class="fa-solid fa-location-dot"></i> عمان إلى عدن
+                        </button>
+                        <button class="route-btn" id="btnADE-AMN" onclick="selectRoute('ADE-AMN', 'عدن', 'عمان')">
+                            <i class="fa-solid fa-location-dot"></i> عدن إلى عمان
+                        </button>
+                        <button class="route-btn" id="btnADE-AJM" onclick="selectRoute('ADE-AJM', 'عدن', 'عجمان')">
+                            <i class="fa-solid fa-location-dot"></i> عدن إلى عجمان
+                        </button>
+                    </div>
+
+                    <form id="busBookingForm" onsubmit="submitBooking(event)">
+                        <!-- Trip Details -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>تاريخ السفر</label>
+                                <input type="date" id="departureDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fa-solid fa-clock"></i> وقت الحضور إلى المحطة</label>
+                                <input type="text" id="reportingTime" class="form-control" value="07:00 صباحاً" placeholder="مثال: 07:00 صباحاً" oninput="updatePriceCalculation()" required>
+                            </div>
+                            <div class="form-group">
+                                <label>عدد المسافرين</label>
+                                <input type="number" id="passengerCount" class="form-control" value="1" min="1" max="10" oninput="updatePriceCalculation()" onchange="updatePriceCalculation()" required>
+                            </div>
+                        </div>
+
+                        <!-- PASSENGER INFO -->
+                        <div style="margin-top: 25px; font-weight: 700; color: var(--gold-light);">
+                            <i class="fa-solid fa-id-card"></i> بيانات المسافر والمالية
+                        </div>
+
+                        <div class="form-row" style="margin-top: 10px;">
+                            <div class="form-group">
+                                <label>الاسم الكامل (مطابق للجواز)</label>
+                                <input type="text" id="passengerName" class="form-control" placeholder="أدخل الاسم كامل" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم جواز السفر / الهوية</label>
+                                <input type="text" id="passportNo" class="form-control" placeholder="A00000000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>رقم الهاتف / الواتساب</label>
+                                <input type="tel" id="phoneNo" class="form-control" placeholder="0000000000" required>
+                            </div>
+                            <div class="form-group">
+                                <label>طريقة السداد المفضلة</label>
+                                <select id="paymentMethod" class="form-control">
+                                    <option value="باليمن">باليمن</option>
+                                    <option value="الدفع عند الصعود">الدفع عند الصعود للباص</option>
+                                    <option value="مدفوع">مدفوع</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <!-- TICKET SINGLE PRICE FIELD -->
+                            <div class="form-group">
+                                <label style="color: var(--gold-light);"><i class="fa-solid fa-tag"></i> سعر التذكرة للفرد (درهم)</label>
+                                <input type="number" id="singleTicketPrice" class="form-control manual-amount-input" value="400" placeholder="أدخل سعر التذكرة للفرد" oninput="updatePriceCalculation()" required>
+                            </div>
+                            <!-- MANUAL TOTAL AMOUNT INPUT FIELD -->
+                            <div class="form-group">
+                                <label style="color: var(--gold-light);"><i class="fa-solid fa-coins"></i> المبلغ الإجمالي (درهم)</label>
+                                <input type="number" id="customAmount" class="form-control manual-amount-input" placeholder="أدخل المبلغ الإجمالي" oninput="updatePriceFromInput()" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold" style="margin-top: 15px;">
+                            <i class="fa-solid fa-ticket-simple"></i> تأكيد الحجز وإصدار البوليصة
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: PRICE SUMMARY -->
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fa-solid fa-file-invoice-dollar"></i> تفاصيل التكلفة
+                        </div>
+                    </div>
+
+                    <div class="price-box">
+                        <div class="price-row">
+                            <span>مسار الحافلة:</span>
+                            <strong id="summaryRoute">عجمان ← عدن</strong>
+                        </div>
+                        <div class="price-row">
+                            <span>وقت الحضور للمحطة:</span>
+                            <strong id="summaryReportingTime" style="color: var(--gold-light);">07:00 صباحاً</strong>
+                        </div>
+                        <div class="price-row">
+                            <span>سعر التذكرة للفرد:</span>
+                            <strong id="summaryBasePrice">400 درهم</strong>
+                        </div>
+                        <div class="price-row">
+                            <span>عدد المسافرين:</span>
+                            <strong id="summaryCount">1</strong>
+                        </div>
+                        <div class="price-total-row">
+                            <span>المبلغ الإجمالي النهائي:</span>
+                            <span id="totalAmount">400 درهم</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
+                        <p><i class="fa-solid fa-shield-halved" style="color: var(--gold-primary);"></i> <strong>مميزات الخدمة باصات وادي بناء VIP:</strong></p>
+                        <ul style="padding-right: 18px; margin-top: 6px;">
+                            <li>رحلات مباشرة وخدمات تكييف عالية الجودة.</li>
+                            <li>وزن أمتعة مجاني حتى 45 كجم لكل مسافر.</li>
+                            <li>خدمة إنترنت Wi-Fi ووجبات خفيفة مجانية أثناء الرحلة.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOOKINGS HISTORY TABLE -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fa-solid fa-list-check"></i> الحجوزات الأخيرة المسجلة
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="custom-table" id="bookingsHistoryTable">
+                    <thead>
+                        <tr>
+                            <th>رقم البوليصة</th>
+                            <th>الاسم</th>
+                            <th>المسار</th>
+                            <th>التاريخ</th>
+                            <th>عدد المسافرين</th>
+                            <th>وقت الحضور</th>
+                            <th>المبلغ</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- الحجوزات تضاف تلقائياً هنا -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PRINTABLE TICKET SECTION -->
+        <div class="card" id="ticketViewContainer" style="display: none;">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fa-solid fa-print"></i> بوليصة / تذكرة السفر VIP الجاهزة للطباعة
+                </div>
+                <button class="btn btn-gold" style="width: auto; padding: 8px 20px;" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> طباعة التذكرة
+                </button>
+            </div>
+
+            <div class="printable-ticket" id="printableTicket">
+                <!-- PAID STAMP ELEMENT -->
+                <div class="paid-stamp" id="paidStamp">
+                    مدفوع
+                    <span>PAID</span>
+                </div>
+
+                <div class="ticket-header-area">
+                    <div class="ticket-logo-box">
+                        <img src="WhatsApp Image 2026-09-30 at 11.31.56 PM.jpeg" alt="شعار التذكرة" class="ticket-logo-img">
+                        <div class="ticket-brand-text">
+                            <h2>شركة وادي بناء للنقل البري VIP</h2>
+                            <p>راحة تليق بك ... طريق يوصلك بأمان</p>
+                        </div>
+                    </div>
+                    <div style="text-align: left;">
+                        <strong id="tNo" style="font-size: 1.15rem; color: #0f172a;">#WB-1100</strong><br>
+                        <small style="color: #64748b;">تاريخ الحجز: 2026-10-07</small>
+                    </div>
+                </div>
+
+                <div class="ticket-route-box">
+                    <div class="route-point">
+                        <p>من (محطة الانطلاق)</p>
+                        <h4 id="tFrom">عجمان</h4>
+                    </div>
+                    <div style="text-align: center;">
+                        <i class="fa-solid fa-bus-simple" style="font-size: 1.8rem; color: #d4af37;"></i>
+                        <p style="font-size: 0.7rem; color: #64748b; margin-top: 2px;">رحلة برية VIP</p>
+                    </div>
+                    <div class="route-point" style="text-align: left;">
+                        <p>إلى (محطة الوصول)</p>
+                        <h4 id="tTo">عدن</h4>
+                    </div>
+                </div>
+
+                <div class="ticket-details-grid">
+                    <div class="ticket-field">
+                        <span>اسم المسافر:</span>
+                        <strong id="tName">-</strong>
+                    </div>
+                    <div class="ticket-field">
+                        <span>رقم الجواز / الهوية:</span>
+                        <strong id="tPassport">-</strong>
+                    </div>
+                    <div class="ticket-field">
+                        <span>تاريخ السفر:</span>
+                        <strong id="tDate">-</strong>
+                    </div>
+                    <div class="ticket-field">
+                        <span>عدد المسافرين:</span>
+                        <strong id="tCount" style="color: #d4af37;">-</strong>
+                    </div>
+                    <div class="ticket-field">
+                        <span>وقت الحضور إلى المحطة:</span>
+                        <strong id="tReportingTime" style="color: #d4af37;">-</strong>
+                    </div>
+                    <div class="ticket-field">
+                        <span>المبلغ الإجمالي المدفوع:</span>
+                        <strong id="tPrice" style="color: #0284c7;">-</strong>
+                    </div>
+                </div>
+
+                <div class="ticket-footer-qr">
+                    <div>
+                        <small style="color: #64748b; display: block;">* يرجى التواجد في المحطة في الوقت المحدد أعلاه.</small>
+                        <small style="color: #64748b;">* إبراز هذه التذكرة مع جواز السفر الأصلي عند الصعود.</small>
+                    </div>
+                    <div style="text-align: center;">
+                        <i class="fa-solid fa-qrcode" style="font-size: 3.2rem; color: #0f172a;"></i>
+                        <p style="font-size: 0.65rem; color: #64748b;">رمز التأكيد الإلكتروني</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  <script>
+    let currentRoute = 'AJM-ADE';
+    let currentFrom = 'عجمان';
+    let currentTo = 'عدن';
+    
+    // العداد التلقائي للبوالص يبدأ من 1100 أو من آخر رقم مخزن
+    let nextTicketNumber = parseInt(localStorage.getItem('nextTicketNumber')) || 1100;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('departureDate').value = today;
+        updatePriceCalculation();
+
+        // 1. استرجاع البيانات المحفوظة عند فتح الصفحة
+        loadSavedBookings();
+    });
+
+    // Switch Routes
+    function selectRoute(routeKey, fromCity, toCity) {
+        currentRoute = routeKey;
+        currentFrom = fromCity;
+        currentTo = toCity;
+
+        // Update Active Buttons
+        document.querySelectorAll('.route-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById('btn' + routeKey);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        document.getElementById('summaryRoute').innerText = `${fromCity} ← ${toCity}`;
+        updatePriceCalculation();
+    }
+
+    // Auto Calculate Total Price = Passengers Count * Single Ticket Price
+    function updatePriceCalculation() {
+        const reportingTime = document.getElementById('reportingTime').value;
+        const count = parseInt(document.getElementById('passengerCount').value) || 1;
+        const singlePrice = parseFloat(document.getElementById('singleTicketPrice').value) || 0;
+
+        let calculatedTotal = count * singlePrice;
+
+        // Update manual input field & summary display
+        document.getElementById('customAmount').value = calculatedTotal;
+        document.getElementById('summaryBasePrice').innerText = singlePrice + ' درهم';
+        document.getElementById('summaryCount').innerText = count;
+        document.getElementById('summaryReportingTime').innerText = reportingTime !== '' ? reportingTime : '07:00 صباحاً';
+        document.getElementById('totalAmount').innerText = calculatedTotal + ' درهم';
+    }
+
+    // Update Price Display when manual total input changes directly
+    function updatePriceFromInput() {
+        const manualAmount = document.getElementById('customAmount').value;
+        document.getElementById('totalAmount').innerText = (manualAmount !== '' ? manualAmount : 0) + ' درهم';
+    }
+
+    // Submit Booking Form
+    function submitBooking(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('passengerName').value;
+        const passport = document.getElementById('passportNo').value;
+        const depDate = document.getElementById('departureDate').value;
+        const reportingTime = document.getElementById('reportingTime').value;
+        const count = document.getElementById('passengerCount').value;
+        const customVal = document.getElementById('customAmount').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const price = (customVal !== '' ? customVal : '0') + ' درهم';
+
+        // إنتاج الرقم التلقائي وزيادة العداد
+        const bookingCode = 'WB-' + nextTicketNumber;
+        nextTicketNumber++;
+
+        // كائن البيانات للحجز
+        const bookingData = {
+            code: bookingCode,
+            name: name,
+            passport: passport,
+            from: currentFrom,
+            to: currentTo,
+            date: depDate,
+            count: count,
+            reportingTime: reportingTime,
+            price: price,
+            paymentMethod: paymentMethod
+        };
+
+        // 2. حفظ بيانات الحجز في localStorage
+        saveBookingToStorage(bookingData);
+
+        // إضافة الحجز في بداية الجدول
+        addBookingToTable(bookingData);
+
+        // Display Printable Ticket View
+        previewTicketView(bookingCode, name, passport, currentFrom, currentTo, depDate, count, reportingTime, price, paymentMethod);
+
+        // إعادة ضبط النموذج
+        document.getElementById('busBookingForm').reset();
+        document.getElementById('departureDate').value = new Date().toISOString().split('T')[0];
+        updatePriceCalculation();
+    }
+
+    // 3. دالة إضافة حجز للجدول
+    function addBookingToTable(b) {
+        const historyTable = document.getElementById('bookingsHistoryTable').getElementsByTagName('tbody')[0];
+        const newRow = historyTable.insertRow(0);
+
+        newRow.innerHTML = `
+            <td><strong>#${b.code}</strong></td>
+            <td>${b.name}</td>
+            <td>${b.from} ← ${b.to}</td>
+            <td>${b.date}</td>
+            <td>${b.count}</td>
+            <td>${b.reportingTime}</td>
+            <td>${b.price}</td>
+            <td>
+                <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" 
+                    onclick="previewTicketView('${b.code}', '${b.name}', '${b.passport}', '${b.from}', '${b.to}', '${b.date}', '${b.count}', '${b.reportingTime}', '${b.price}', '${b.paymentMethod}')">
+                    <i class="fa-solid fa-print"></i> التذكرة
+                </button>
+            </td>
+        `;
+    }
+
+    // 4. دالة حفظ الحجز في LocalStorage
+    function saveBookingToStorage(booking) {
+        let bookings = JSON.parse(localStorage.getItem('busBookings')) || [];
+        bookings.push(booking);
+        localStorage.setItem('busBookings', JSON.stringify(bookings));
+        localStorage.setItem('nextTicketNumber', nextTicketNumber);
+    }
+
+    // 5. دالة تحميل الحجوزات المحفوظة
+    function loadSavedBookings() {
+        let bookings = JSON.parse(localStorage.getItem('busBookings')) || [];
+        bookings.forEach(booking => {
+            addBookingToTable(booking);
+        });
+    }
+
+    // Populate Ticket Data View
+    function previewTicketView(no, name, passport, from, to, date, count, reportingTime, price, paymentMethod) {
+        document.getElementById('tNo').innerText = '#' + no;
+        document.getElementById('tName').innerText = name;
+        document.getElementById('tPassport').innerText = passport;
+        document.getElementById('tFrom').innerText = from;
+        document.getElementById('tTo').innerText = to;
+        document.getElementById('tDate').innerText = date;
+        document.getElementById('tCount').innerText = count;
+        document.getElementById('tReportingTime').innerText = reportingTime;
+        document.getElementById('tPrice').innerText = price;
+
+        // إظهار أو إخفاء الختم حسب خيار السداد
+        const stamp = document.getElementById('paidStamp');
+        if (paymentMethod === 'مدفوع') {
+            stamp.style.display = 'block';
+        } else {
+            stamp.style.display = 'none';
+        }
+
+        const ticketContainer = document.getElementById('ticketViewContainer');
+        ticketContainer.style.display = 'block';
+        ticketContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
